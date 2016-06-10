@@ -1,0 +1,51 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" x:Class="Wokeh.MainWindow"
+        Title="Wokeh" Height="119" Width="312" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize" Icon="w0.ico">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Label x:Name="Menu" Background="#FF74AB8F" Content="&#xE0C2;" Foreground="White" FontWeight="Bold" FontFamily="Segoe UI Symbol" HorizontalContentAlignment="Center" OpacityMask="#FF30A469" VerticalContentAlignment="Top"/>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content=""/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#FFF0F0F0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="92*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Panel.ZIndex="1" LastChildFill="False" ClipToBounds="True"  SnapsToDevicePixels="True" Background="#19189545">
+            <Label x:Name="btnClose" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="&#xE0A4;" FontFamily="Segoe UI Symbol" FontWeight="Bold" HorizontalAlignment="Center" Background="#FFD4551A" Width="36" DockPanel.Dock="Right" RenderTransformOrigin="-0.848,0.893" AllowDrop="True" MouseUp="btnClose_MouseUp"/>
+            <Label x:Name="btnPin" Content="&#xE141;" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontFamily="Segoe UI Symbol" Width="33" DockPanel.Dock="Right" Foreground="Black" Background="#FFD4D4D4" MouseUp="btnPin_MouseUp"/>
+            <Button x:Name="menu" ContextMenuService.IsEnabled="True" Content="Button" DockPanel.Dock="Left" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyle1}" Width="40" Click="menu_Click">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="htmlEncode" Header="HTML Encode" Click="htmlEncode_Click"/>
+                        <MenuItem x:Name="htmlDecode" Header="HTML Decode" Click="htmlDecode_Click"/>
+                        <MenuItem x:Name="imgEncode" Header="Image To Base64" Click="imgEncode_Click"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+            <Label x:Name="TitleWindow" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Content="Wokeh HTML Encoder" Height="28" VerticalAlignment="Top" DockPanel.Dock="Top" FontWeight="Bold" MouseLeftButtonDown="TitleWindow_MouseLeftButtonDown"/>
+        </DockPanel>
+        <Grid Grid.Row="1" Margin="0,0,0,1">
+            <Button x:Name="action" Content="Encode" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="81" Height="71" Click="action_Click" Background="{x:Null}" BorderBrush="#FF707070"/>
+            <TextBox x:Name="preview" HorizontalAlignment="Left" Height="71" Margin="105,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" PreviewMouseDoubleClick="preview_PreviewMouseDoubleClick"/>
+        </Grid>
+    </Grid>
+</Window>
